@@ -56,7 +56,6 @@ void default_constants() {
 ///
 void Left36() {
   
-// Enables global slew
   set_intake(127);
   set_indexer(true);
   //! Intake Blocks
@@ -173,22 +172,19 @@ void Right36() {
 
 }
 
-void SoloAwpRed() {
+void SoloAwp() {
 
-
-  chassis.slew_drive_set(false);  // Disables global slew
-  chassis.slew_drive_constants_set(35_in, 100);
   set_intake(127);
   set_indexer(true);
   //! Intake Blocks
-  chassis.pid_drive_set(36_in, 45);
+  chassis.pid_drive_set(36_in, 50);
   chassis.pid_wait();
   set_intake(0);
   // //todo Go to High Mid
   chassis.pid_swing_set(ez::RIGHT_SWING, 67_deg, 75, 11);
   chassis.pid_wait();
   set_indexer(false);
-  chassis.pid_drive_set(13_in, 85);
+  chassis.pid_drive_set(12.75_in, 85);
   chassis.pid_wait();
   //! Score High Mid
   set_indexer(false);
@@ -200,54 +196,97 @@ void SoloAwpRed() {
   chassis.pid_wait();
   set_indexer(true);
   set_intake(127);
-  chassis.pid_drive_set(61_in, 55, true);
+  chassis.pid_drive_set(61_in, 70);
   chassis.pid_wait();
   // //todo Go to Low Mid
   chassis.pid_turn_set(-42_deg, 87, ez::ccw);
   chassis.pid_wait();
-  set_intake(-107); 
-  chassis.pid_drive_set(20_in, 82);
+  set_intake(-127); 
+  chassis.pid_drive_set(18_in, 82);
   chassis.pid_wait();
   // //! Score Low Mid
-  set_intake(-78);
+  set_intake(-70);
   delay(300);
   set_intake(127);
   //todo Go to Loader
   chassis.pid_turn_set(-35_deg, 85, ez::cw);
   chassis.pid_wait();
-  chassis.pid_drive_set(-43._in, 75, true); //44
+  chassis.pid_drive_set(-42_in, 75); //44
   chassis.pid_wait();
   set_indexer(true);
-  set_intake(-60);
+  set_tongue(true);
   chassis.pid_turn_set(-162_deg, 90, ez::ccw);
   chassis.pid_wait();
-  set_tongue(true); 
   //! Load
   set_intake(127);
-  chassis.pid_drive_set(21_in, 45); 
+  chassis.pid_drive_set(21.5_in, 46); 
   chassis.pid_wait_quick_chain();
   delay(760);
   //todo Go to High Goal
   chassis.pid_drive_set(-18_in, 92);
   chassis.pid_wait();
   set_tongue(false);
-  set_intake(-55);
+  set_intake(-30);
   chassis.pid_turn_set(18_deg, 83, ez::cw);
   chassis.pid_wait();
   //! Score High
   set_indexer(false);
   set_intake(127);
-  chassis.pid_drive_set(10.4_in, 75);
+  chassis.pid_drive_set(8.5_in, 75);
   chassis.pid_wait_quick_chain();
-  delay(1500);
+  delay(1300);
   chassis.pid_drive_set(5_in, 100);
   chassis.pid_wait();
   
 }
 
-void SoloAwpBlue() {
+void Skills() {
 
+  set_intake(127);
+  set_indexer(true);
+  //! Intake Blocks
+  chassis.pid_drive_set(36_in, 50);
+  chassis.pid_wait();
+  set_intake(0);
+  //todo Go to High Goal @Left.1
+  chassis.pid_swing_set(ez::RIGHT_SWING, 108_deg, 80, 35);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-18.5_in, 70);
+  chassis.pid_wait();
+  chassis.pid_turn_set(18, 70, ez::ccw);
+  chassis.pid_wait();
+  chassis.pid_drive_set(14.5_in, 70);
+  chassis.pid_wait();
+  //! Score High @Left.1
+  set_intake(127);
+  set_indexer(false);
+  delay(2000);
+  chassis.pid_drive_set(5_in, 80);
+  //todo Go To Loader
+  chassis.pid_drive_set(-10, 70);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-162, 70);
+  chassis.pid_wait();
+  //! Load
+  set_tongue(true);
+  set_indexer(true);
+  chassis.pid_drive_set(15, 60);
+  chassis.pid_wait_quick_chain();
+  delay(2000);
+  //todo Go to High Goal @Left.2
+  chassis.pid_drive_set(-15, 70);
+  chassis.pid_wait();
+  set_tongue(false);
+  chassis.pid_turn_set(16, 70);
+  chassis.pid_wait();
+  chassis.pid_drive_set(12, 70);
+  chassis.pid_wait();
+  //! Score High @Left.2
+  set_intake(127);
+  set_indexer(false);
+  chassis.pid_drive_set(5_in, 80);
 }
+
 void drive_example() {
   // The first parameter is target inches
   // The second parameter is max speed the robot will drive at

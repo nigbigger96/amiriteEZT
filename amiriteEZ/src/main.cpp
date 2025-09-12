@@ -59,11 +59,11 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
     //! CHANGE
-      {"SoloAwpRed\n\nSoloAwpRed", SoloAwpRed},
+      {"Skills\n\nSkills", Skills},
       {"Left36\n\nLeft36", Left36},
       {"Right36\n\nRight36", Right36},
-      // {"SoloAwpRed\n\nSoloAwpRed", SoloAwpRed},
-      {"SoloAwpBlue\n\nSoloAwpBlue", SoloAwpBlue},
+      {"SoloAwp\n\nSoloAwp", SoloAwp},
+      // {"Skills\n\nSkills", Skills},
       {"Drive\n\nDrive forward and come back", drive_example},
       {"Turn\n\nTurn 3 times.", turn_example},
       {"Drive and Turn\n\nDrive forward, turn, come back", drive_and_turn},
