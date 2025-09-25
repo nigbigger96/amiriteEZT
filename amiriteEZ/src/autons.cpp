@@ -59,11 +59,11 @@ void Left36() {
   set_intake(127);
   set_indexer(true);
   //! Intake Blocks
-  chassis.pid_drive_set(36_in, 55);
+  chassis.pid_drive_set(35.5_in, 55);
   chassis.pid_wait();
   set_intake(0);
   //! Lick Blocks
-  chassis.pid_swing_set(ez::RIGHT_SWING, -69_deg, 57, 2);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -67_deg, 57, 2);
   chassis.pid_wait();
   chassis.pid_drive_set(12_in, 90);
   chassis.pid_wait();
@@ -71,36 +71,38 @@ void Left36() {
   delay(100);
   set_intake(127);
   //todo Go to Mid
-  chassis.pid_swing_set(ez::RIGHT_SWING, 67_deg, 55, 8);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 67_deg, 55, 11);
   chassis.pid_wait();
   set_anglechanger(false);
-  chassis.pid_drive_set(12_in, 80);
+  chassis.pid_drive_set(11.5_in, 80);
   chassis.pid_wait();
   //! Score Mid
   set_indexer(false);
-  set_intake(100); //? test
-  delay(1200);
+  set_intake(-127);
+  delay(300);
+  set_intake(107); //? test
+  delay(1000);
   set_intake(-60); 
   set_anglechanger(true);
   //todo Go to Loader
-  chassis.pid_drive_set(-44_in, 80); //44
+  chassis.pid_drive_set(-42.5_in, 80); //44
   chassis.pid_wait();
   set_indexer(true);
   set_intake(127);
-  chassis.pid_turn_set(-169_deg, 90, ez::cw);
+  chassis.pid_turn_set(-162_deg, 90, ez::cw);
   chassis.pid_wait();
   //! Load
   set_intake(127);
-  chassis.pid_drive_set(17_in, 45); 
+  chassis.pid_drive_set(15_in, 45); 
   chassis.pid_wait_quick_chain();
-  delay(650);
+  delay(760); //650
   //todo Go to High Goal
   chassis.pid_drive_set(-18_in, 75);
   chassis.pid_wait();
   set_tongue(false);
-  chassis.pid_turn_set(17_deg, 85, ez::cw);
+  chassis.pid_turn_set(14_deg, 85, ez::cw);
   chassis.pid_wait();
-  chassis.pid_drive_set(11_in, 65);
+  chassis.pid_drive_set(10.36_in, 65);
   chassis.pid_wait();
   //! Score High
   set_indexer(false);
@@ -108,8 +110,9 @@ void Left36() {
   delay(275);
   set_intake(127);
   delay(2100);
-  chassis.pid_drive_set(5_in, 100);
+  chassis.pid_drive_set(5_in, 127);
   chassis.pid_wait();
+
 }
 
 void Right36() {
@@ -117,7 +120,7 @@ void Right36() {
   set_intake(127);
   set_indexer(true);
   //! Intake Blocks
-  chassis.pid_drive_set(36_in, 55);
+  chassis.pid_drive_set(36.5_in, 55);
   chassis.pid_wait();
   set_intake(0);
   //! Lick Blocks
@@ -132,13 +135,13 @@ void Right36() {
   chassis.pid_swing_set(ez::LEFT_SWING, -67_deg, 55, 13);
   chassis.pid_wait();
   set_tongue(false); 
-  chassis.pid_drive_set(18_in, 80);
+  chassis.pid_drive_set(16.5_in, 80);
   chassis.pid_wait();
   //! Score Mid
   set_intake(-127); //? test
-  delay(600);
-  set_intake(-60); 
-  delay(600);
+  delay(800);
+  set_intake(-70); 
+  delay(400);
   set_intake(127);
   //todo Go to Loader
   chassis.pid_drive_set(-49_in, 80); //44
@@ -150,14 +153,14 @@ void Right36() {
   set_tongue(true); 
   // //! Load
   set_intake(127);
-  chassis.pid_drive_set(13_in, 45); 
+  chassis.pid_drive_set(9.25_in, 45); 
   chassis.pid_wait_quick_chain();
-  delay(650);
+  delay(760); //650
   //todo Go to High Goal
   chassis.pid_drive_set(-18_in, 75);
   chassis.pid_wait();
   set_tongue(false);
-  chassis.pid_turn_set(-17_deg, 85, ez::ccw);
+  chassis.pid_turn_set(-20_deg, 85, ez::ccw);
   chassis.pid_wait();
   chassis.pid_drive_set(11_in, 65);
   chassis.pid_wait();
