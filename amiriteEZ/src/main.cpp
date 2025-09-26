@@ -59,9 +59,9 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
     //! CHANGE
+
       {"Left36\n\nLeft36", Left36},
       {"Right36\n\nRight36", Right36},
-      {"Left36\n\nLeft36", Left36},
       {"SoloAwp\n\nSoloAwp", SoloAwp},
       {"Skills\n\nSkills", Skills},
       {"Drive\n\nDrive forward and come back", drive_example},
