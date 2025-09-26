@@ -19,5 +19,6 @@ void measure_offsets();
 
 void Left36();
 void Right36();
-void SoloAwp();
-void Skills();
+void SoloAwpBlue();
+void SoloAwpRed();
+// void Skills();
