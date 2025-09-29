@@ -55,33 +55,32 @@ void default_constants() {
 void Left36() {
   // Enables global slew
   //? 67
-  set_intake(127);
+    set_intake(127);
   set_indexer(true);
   //! Intake Blocks
-  chassis.pid_drive_set(36_in, 56);
+  chassis.pid_drive_set(36_in, 60);
   chassis.pid_wait();
   set_intake(-10);
   //! Lick Blocks
-  chassis.pid_swing_set(ez::RIGHT_SWING, -67_deg, 56, 0);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -67_deg, 58, 0);
   chassis.pid_wait();
-  chassis.pid_drive_set(11_in, 70);
+  chassis.pid_drive_set(13_in, 90);
   chassis.pid_wait();
-  set_tongue(true);
+  set_tongue(true); 
   set_intake(127);
-  delay(100);
-  // todo Go to High Goal
+  //todo Go to High Goal
   chassis.pid_swing_set(ez::RIGHT_SWING, 65_deg, 58, 12);
   chassis.pid_wait();
-  chassis.pid_drive_set(-35.5_in, 90);
+  chassis.pid_drive_set(-35_in, 80);
   chassis.pid_wait();
   set_indexer(true);
   set_intake(127);
   set_tongue(false);
   chassis.pid_turn_set(18_deg, 80, ez::ccw);
   chassis.pid_wait();
-  chassis.pid_drive_set(15_in, 90);
+  chassis.pid_drive_set(13_in, 90);
   chassis.pid_wait();
-  //! Score
+  //!Score
   set_intake(127);
   set_indexer(false);
   delay(1100);
@@ -89,45 +88,35 @@ void Left36() {
   chassis.pid_wait();
   set_intake(-80);
   set_tongue(true);
-  // todo Go to Loader
+  //todo Go to Loader
   chassis.pid_drive_set(-17_in, 90);
   chassis.pid_wait();
   set_intake(127);
   set_indexer(true);
   chassis.pid_turn_set(-162_deg, 80, ez::ccw);
   chassis.pid_wait();
-  //! Load
-  chassis.pid_drive_set(13_in, 50, ez::ccw);
-  chassis.pid_wait();
+  //!Load
+  chassis.pid_drive_set(11_in, 50, ez::ccw);
+  chassis.pid_wait_quick_chain();
   delay(600);
-  // todo Go to High Goal
+  //!Go to high goal
   chassis.pid_drive_set(-5_in, 90);
   chassis.pid_wait();
-  chassis.pid_turn_set(16.2_deg, 80);
+  chassis.pid_turn_set(14.5_deg, 80);
   chassis.pid_wait();
   set_intake(-30);
   set_tongue(false);
   delay(200);
-  chassis.pid_drive_set(22.7_in, 90);
+  chassis.pid_drive_set(23_in, 90);
   chassis.pid_wait();
-  //! Score
+  //!score
   set_intake(127);
   set_indexer(false);
   delay(1000);
-  chassis.pid_drive_set(2_in, 127);
-  chassis.pid_wait_quick_chain();
-  // todo Go to Descore
-  set_intake(0);
-  chassis.pid_drive_set(-5_in, 90);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(-72_deg, 90);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::LEFT_SWING, -162_deg, 40, 3);
+  chassis.pid_drive_set(4_in, 90);
   chassis.pid_wait();
-  set_descore(true);
-  //! Descore
-  chassis.pid_drive_set(-25_in, 53);
-  chassis.pid_wait();
+
+
 
   // set_intake(127);
   // set_indexer(true);

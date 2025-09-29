@@ -6,7 +6,10 @@ void set_intake(int input) {
 }
 
 void intake_opcontrol() {
-  if (master.get_digital(DIGITAL_R1)) {
+  if (master.get_digital(DIGITAL_R1) && master.get_digital(DIGITAL_R2)) {
+    set_intake(70);
+  } 
+  else if (master.get_digital(DIGITAL_R1)) {
     set_intake(127);
   } 
   else if (master.get_digital(DIGITAL_R2)) {
