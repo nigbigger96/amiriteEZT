@@ -250,6 +250,10 @@ void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
 
+  bool trapdoorToggle = false;
+  bool tongueToggle = false;
+  bool descoreToggle = false;
+
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
@@ -261,14 +265,55 @@ void opcontrol() {
     // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade
     intake_opcontrol();
     anglechanger_opcontrol();
-    descore_opcontrol();
+    // descore_opcontrol();
     indexer_opcontrol();
-    tongue_opcontrol();
-    trapdoor_opcontrol();
+    // tongue_opcontrol();
+    // trapdoor_opcontrol();
 
     // . . .
-    // Put more user control code here!
+    /*
+    // --- Case 1: Both pressed (trapdoor) ---
+    if (yB && rightB &&
+        (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y) ||
+         master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT))) {
+      trapdoorToggle = !trapdoorToggle;
+      set_trapdoor(trapdoorToggle);
+    }
+    // --- Case 2: Y pressed (tongue only) ---
+    else if (yB && !rightB && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
+      tongueToggle = !tongueToggle;
+      set_tongue(tongueToggle);
+    }
+
+    // --- Case 3: Right pressed (descore only) ---
+    else if (rightB && !yB && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+      descoreToggle = !descoreToggle;
+      set_descore(descoreToggle);
+    }
+    */
+
+    bool yB = master.get_digital(E_CONTROLLER_DIGITAL_Y);
+    bool rightB = master.get_digital(E_CONTROLLER_DIGITAL_RIGHT);
+    bool yNew = master.get_digital_new_press(E_CONTROLLER_DIGITAL_Y);
+    bool rightNew = master.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT);
+
+    // --- Combo: Both Y + Right ---
+    if (yB && rightB && (yNew || rightNew)) {
+      trapdoorToggle = !trapdoorToggle;
+      set_trapdoor(trapdoorToggle);
+    }
+    // --- Y only ---
+    else if (yB && !rightB && yNew) {
+      tongueToggle = !tongueToggle;
+      set_tongue(tongueToggle);
+    }
+    // --- Right only ---
+    else if (rightB && !yB && rightNew) {
+      descoreToggle = !descoreToggle;
+      set_descore(descoreToggle);
+    }
     // . . .
+
     if (master.get_digital_new_press(DIGITAL_X))
       autonomous();
 

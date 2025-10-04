@@ -5,5 +5,5 @@ void set_tongue(bool input) {
 }
 
 void tongue_opcontrol() {
-  tongue.button_toggle(master.get_digital_new_press(DIGITAL_B));
+  tongue.button_toggle(master.get_digital_new_press(DIGITAL_Y));
 }

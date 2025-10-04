@@ -67,40 +67,40 @@ void Left36() {
   delay(100);
   set_intake(127);
   // todo Go to Mid
-  chassis.pid_swing_set(ez::RIGHT_SWING, 65.5_deg, 60, 16);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 62_deg, 60, 16);
   chassis.pid_wait();
   set_tongue(false);
   delay(100);
   set_anglechanger(false);
   delay(60);
-  chassis.pid_drive_set(9_in, 80);
+  chassis.pid_drive_set(9.5_in, 50);
   chassis.pid_wait();
   //! Score Mid
   set_indexer(false);
-  set_intake(77);  //? test
-  delay(1450);
-  set_intake(-60);
+  set_intake(80);  //? test
+  delay(1370);
+  set_intake(-50);
   set_anglechanger(true);
   // todo Go to Loader
-  chassis.pid_drive_set(-42.5_in, 80);  // 44
+  chassis.pid_drive_set(-45_in, 80);  // 44
   chassis.pid_wait();
   set_indexer(true);
-  set_intake(127);
+  set_intake(20);
+  set_tongue(true);
   chassis.pid_turn_set(-162_deg, 55, ez::cw);
   chassis.pid_wait();
-  set_tongue(true);
   //! Load
   set_intake(127);
-  chassis.pid_drive_set(14_in, 55);
+  chassis.pid_drive_set(11_in, 55);
   chassis.pid_wait_quick_chain();
-  delay(800);
+  delay(700);
   // todo Go to High Goal
   chassis.pid_drive_set(-10_in, 75);
   chassis.pid_wait();
   set_tongue(false);
-  chassis.pid_turn_set(16_deg, 55, ez::cw);
+  chassis.pid_turn_set(12.5_deg, 55, ez::cw);
   chassis.pid_wait();
-  chassis.pid_drive_set(17_in, 65);
+  chassis.pid_drive_set(17.5_in, 65);
   chassis.pid_wait();
   //! Score High
   set_indexer(false);
@@ -109,99 +109,10 @@ void Left36() {
   set_intake(127);
   delay(2100);
   chassis.pid_drive_set(3_in, 100);
-  chassis.pid_wait_quick_chain();
-  // set_tongue(false);
-  // chassis.pid_turn_set(18_deg, 80, ez::ccw);
-  // chassis.pid_wait();
-  // chassis.pid_drive_set(13_in, 90);
-  // chassis.pid_wait();
-  // //!Score
-  // set_intake(127);
-  // set_indexer(false);
-  // delay(1100);
-  // chassis.pid_drive_set(4_in, 90);
-  // chassis.pid_wait();
-  // set_intake(-80);
-  // set_tongue(true);
-  // //todo Go to Loader
-  // chassis.pid_drive_set(-17_in, 90);
-  // chassis.pid_wait();
-  // set_intake(127);
-  // set_indexer(true);
-  // chassis.pid_turn_set(-162_deg, 80, ez::ccw);
-  // chassis.pid_wait();
-  // //!Load
-  // chassis.pid_drive_set(11_in, 50, ez::ccw);
-  // chassis.pid_wait_quick_chain();
-  // delay(600);
-  // //!Go to high goal
-  // chassis.pid_drive_set(-5_in, 90);
-  // chassis.pid_wait();
-  // chassis.pid_turn_set(14.5_deg, 80);
-  // chassis.pid_wait();
-  // set_intake(-30);
-  // set_tongue(false);
-  // delay(200);
-  // chassis.pid_drive_set(23_in, 90);
-  // chassis.pid_wait();
-  // //!score
-  // set_intake(127);
-  // set_indexer(false);
-  // delay(1000);
-  // chassis.pid_drive_set(4_in, 90);
-  // chassis.pid_wait();
-
-  // set_intake(127);
-  // set_indexer(true);
-  // //! Intake Blocks
-  // chassis.pid_drive_set(36_in, 60);
-  // chassis.pid_wait();
-  // set_intake(35);
-  // //! Lick Blocks
-  // chassis.pid_swing_set(ez::RIGHT_SWING, -67_deg, 58, 0);
-  // chassis.pid_wait();
-  // chassis.pid_drive_set(12_in, 90);
-  // chassis.pid_wait();
-  // set_tongue(true);
-  // set_intake(127);
-  // //todo Go to Mid
-  // chassis.pid_swing_set(ez::RIGHT_SWING, 65_deg, 58, 12);
-  // chassis.pid_wait();
-  // set_tongue(false);
-  // delay(200);
-  // set_anglechanger(false);
-  // chassis.pid_drive_set(10.5_in, 80);
-  // chassis.pid_wait();
-  // //! Score Mid
-  // set_indexer(false);
-  // set_intake(90);
-  // delay(1000);
-  // set_intake(-90);
-  // set_anglechanger(true);
-  // set_tongue(true);
-  // //todo Go to Loader
-  // chassis.pid_drive_set(-42.5_in, 83);
-  // chassis.pid_wait();
-  // set_indexer(true);
-  // set_intake(127);
-  // chassis.pid_turn_set(-162_deg, 90, ez::cw);
-  // chassis.pid_wait();
-  // //! Load
-  // set_intake(127);
-  // chassis.pid_drive_set(13_in, 55);
-  // chassis.pid_wait_quick_chain();
-  // delay(1000);
-  // //todo Go to High Goal
-  // chassis.pid_drive_set(-18_in, 67);
-  // chassis.pid_wait();
-  // set_tongue(false);
-  // chassis.pid_turn_set(16_deg, 50, ez::ccw);
-  // chassis.pid_wait();
-  // set_indexer(false);
-  // set_intake(127);
-  // chassis.pid_drive_set(11.5_in, 65);
-  // chassis.pid_wait();
-  // //! Score High
+  chassis.pid_wait();
+  delay(100);
+  chassis.pid_drive_set(-10_in, 80);
+  chassis.pid_wait();
 }
 
 void Right36() {
