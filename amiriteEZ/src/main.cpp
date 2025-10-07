@@ -265,9 +265,9 @@ void opcontrol() {
     // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade
     intake_opcontrol();
     anglechanger_opcontrol();
-    // descore_opcontrol();
+    descore_opcontrol();
     indexer_opcontrol();
-    // tongue_opcontrol();
+    tongue_opcontrol();
     // trapdoor_opcontrol();
 
     // . . .
@@ -297,21 +297,21 @@ void opcontrol() {
     bool yNew = master.get_digital_new_press(E_CONTROLLER_DIGITAL_Y);
     bool rightNew = master.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT);
 
-    // --- Combo: Both Y + Right ---
-    if (yB && rightB && (yNew || rightNew)) {
-      trapdoorToggle = !trapdoorToggle;
-      set_trapdoor(trapdoorToggle);
-    }
-    // --- Y only ---
-    else if (yB && !rightB && yNew) {
-      tongueToggle = !tongueToggle;
-      set_tongue(tongueToggle);
-    }
-    // --- Right only ---
-    else if (rightB && !yB && rightNew) {
-      descoreToggle = !descoreToggle;
-      set_descore(descoreToggle);
-    }
+    // // --- Combo: Both Y + Right ---
+    // if (yB && rightB && (yNew || rightNew)) {
+    //   trapdoorToggle = !trapdoorToggle;
+    //   set_trapdoor(trapdoorToggle);
+    // }
+    // // --- Y only ---
+    // else if (yB && !rightB && yNew) {
+    //   tongueToggle = !tongueToggle;
+    //   set_tongue(tongueToggle);
+    // }
+    // // --- Right only ---
+    // else if (rightB && !yB && rightNew) {
+    //   descoreToggle = !descoreToggle;
+    //   set_descore(descoreToggle);
+    // }
     // . . .
 
     if (master.get_digital_new_press(DIGITAL_X))
