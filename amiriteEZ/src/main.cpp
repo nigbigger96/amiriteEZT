@@ -216,7 +216,7 @@ void ez_template_extras() {
       chassis.pid_tuner_toggle();
 
     // Trigger the selected autonomous routine
-    if (master.get_digital(DIGITAL_X) && master.get_digital(DIGITAL_A)) {
+    if (master.get_digital(DIGITAL_LEFT) && master.get_digital(DIGITAL_UP)) {
       pros::motor_brake_mode_e_t preference = chassis.drive_brake_get();
       autonomous();
       chassis.drive_brake_set(preference);
@@ -257,19 +257,20 @@ void opcontrol() {
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
-
+    unlocked = false;
     // chassis.opcontrol_tank();  // Tank control
-    chassis.opcontrol_arcade_standard(ez::SPLIT);  // Standard split arcade
-    // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
-    // chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
-    // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade
+    if (unlocked) {
+      chassis.opcontrol_arcade_standard(ez::SPLIT);  // Standard split arcade
+      // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
+      // chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
+      // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade
+    }
     intake_opcontrol();
     anglechanger_opcontrol();
     descore_opcontrol();
     indexer_opcontrol();
     tongue_opcontrol();
     // trapdoor_opcontrol();
-
     // . . .
     /*
     // --- Case 1: Both pressed (trapdoor) ---

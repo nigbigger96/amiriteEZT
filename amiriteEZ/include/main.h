@@ -46,6 +46,7 @@
 // More includes here...
 #include "anglechanger.hpp"
 #include "autons.hpp"
+#include "burnoutcheck.hpp"
 #include "descore.hpp"
 #include "indexer.hpp"
 #include "intake.hpp"

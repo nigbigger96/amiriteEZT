@@ -52,12 +52,50 @@ void default_constants() {
 ///
 void Left36() {
   // Enables global slew
+
   set_intake(127);
   set_indexer(true);
   //! Intake Blocks
-  chassis.pid_drive_set(36_in, 55);
+  chassis.pid_drive_set(8_in, 60);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(18.7, 37);
   chassis.pid_wait();
-  set_intake(0);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -67_deg, 57, 21);
+  chassis.pid_wait_quick_chain();
+  //! Lick Blocks
+  chassis.pid_drive_set(6.3, 40);
+  chassis.pid_wait();
+  delay(50);
+  set_tongue(true);
+  delay(100);
+  set_intake(127);
+  // todo Go to Mid
+  chassis.pid_swing_set(ez::RIGHT_SWING, -42_deg, 58, 20);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-11, 70);
+  chassis.pid_wait_quick_chain();
+  set_tongue(false);
+  chassis.pid_drive_set(-8, 25);
+  chassis.pid_wait();
+  set_anglechanger(false);
+  chassis.pid_turn_set(62_deg, 60, ez::cw);
+  chassis.pid_wait();
+  //! Score Mid
+  set_indexer(false);
+  set_intake(105);  //? test
+  delay(1370);
+  set_intake(-50);
+  set_anglechanger(true);
+  // todo Go to Loader
+  chassis.pid_drive_set(-45_in, 80);  // 44
+  chassis.pid_wait();
+  set_indexer(true);
+  set_intake(20);
+  set_tongue(true);
+  chassis.pid_turn_set(-162_deg, 55, ez::cw);
+  chassis.pid_wait();
+
+  /*
   //! Lick Blocks
   chassis.pid_swing_set(ez::RIGHT_SWING, -69.5_deg, 57, 2);  //? CHANGE
   chassis.pid_wait();
@@ -113,6 +151,7 @@ void Left36() {
   delay(100);
   chassis.pid_drive_set(-10_in, 80);
   chassis.pid_wait();
+  */
 }
 
 void Right36() {
