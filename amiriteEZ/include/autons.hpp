@@ -21,4 +21,4 @@ void Left36();
 void Right36();
 void SoloAwpBlue();
 void SoloAwpRed();
-// void Skills();
+void Skills();

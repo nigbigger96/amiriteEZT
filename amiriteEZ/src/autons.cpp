@@ -16,7 +16,7 @@ const int SWING_SPEED = 110;
 void default_constants() {
   // P, I, D, and Start I
   chassis.pid_drive_constants_set(20.0, 0.0, 165.0);         // Fwd/rev constants, used for odom and non odom motions
-  chassis.pid_heading_constants_set(15.0, 0.0, 30);          // Holds the robot straight while going forward without odom
+  chassis.pid_heading_constants_set(14.0, 0.0, 41);          // Holds the robot straight while going forward without odom
   chassis.pid_turn_constants_set(6.0, 0.003, 50.0, 15.0);    // Turn in place constants
   chassis.pid_swing_constants_set(6.0, 0.0, 50.0);           // Swing constants
   chassis.pid_odom_angular_constants_set(6.5, 0.0, 52.5);    // Angular control for odom motions
@@ -60,67 +60,36 @@ void Left36() {
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(18.7, 37);
   chassis.pid_wait();
-  chassis.pid_swing_set(ez::RIGHT_SWING, -67_deg, 57, 21);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_swing_set(ez::RIGHT_SWING, -67_deg, 57, 22);
+  chassis.pid_wait();
   //! Lick Blocks
   chassis.pid_drive_set(6.3, 40);
   chassis.pid_wait();
   delay(50);
   set_tongue(true);
-  delay(100);
   set_intake(127);
+  delay(200);
   // todo Go to Mid
-  chassis.pid_swing_set(ez::RIGHT_SWING, -42_deg, 58, 20);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -40_deg, 58, 20);
   chassis.pid_wait();
-  chassis.pid_drive_set(-11, 70);
+  chassis.pid_drive_set(-11, 75);
   chassis.pid_wait_quick_chain();
   set_tongue(false);
-  chassis.pid_drive_set(-8, 25);
-  chassis.pid_wait();
   set_anglechanger(false);
-  chassis.pid_turn_set(62_deg, 60, ez::cw);
+  chassis.pid_drive_set(-9, 25);
+  chassis.pid_wait();
+  chassis.pid_turn_set(63_deg, 60, ez::cw);
   chassis.pid_wait();
   //! Score Mid
+  set_intake(79);
   set_indexer(false);
-  set_intake(105);  //? test
-  delay(1370);
-  set_intake(-50);
+  delay(1280);
+  set_intake(-40);
   set_anglechanger(true);
   // todo Go to Loader
-  chassis.pid_drive_set(-45_in, 80);  // 44
-  chassis.pid_wait();
-  set_indexer(true);
-  set_intake(20);
-  set_tongue(true);
-  chassis.pid_turn_set(-162_deg, 55, ez::cw);
-  chassis.pid_wait();
-
-  /*
-  //! Lick Blocks
-  chassis.pid_swing_set(ez::RIGHT_SWING, -69.5_deg, 57, 2);  //? CHANGE
-  chassis.pid_wait();
-  chassis.pid_drive_set(11.5_in, 80);
-  chassis.pid_wait();
-  set_tongue(true);
-  delay(100);
-  set_intake(127);
-  // todo Go to Mid
-  chassis.pid_swing_set(ez::RIGHT_SWING, 62_deg, 60, 16);
-  chassis.pid_wait();
-  set_tongue(false);
-  delay(100);
-  set_anglechanger(false);
-  delay(60);
-  chassis.pid_drive_set(9.5_in, 50);
-  chassis.pid_wait();
-  //! Score Mid
-  set_indexer(false);
-  set_intake(80);  //? test
-  delay(1370);
-  set_intake(-50);
-  set_anglechanger(true);
-  // todo Go to Loader
-  chassis.pid_drive_set(-45_in, 80);  // 44
+  chassis.pid_drive_set(-34_in, 77);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(-10_in, 45);
   chassis.pid_wait();
   set_indexer(true);
   set_intake(20);
@@ -129,32 +98,97 @@ void Left36() {
   chassis.pid_wait();
   //! Load
   set_intake(127);
-  chassis.pid_drive_set(11_in, 55);
+  chassis.pid_drive_set(5_in, 35);
   chassis.pid_wait_quick_chain();
-  delay(700);
-  // todo Go to High Goal
-  chassis.pid_drive_set(-10_in, 75);
-  chassis.pid_wait();
+  chassis.pid_drive_set(5_in, 65);
+  chassis.pid_wait_quick_chain();
+  delay(450);
+  // todo Go to High
+  chassis.pid_drive_set(-11_in, 50);
+  chassis.pid_wait_quick_chain();
   set_tongue(false);
-  chassis.pid_turn_set(12.5_deg, 55, ez::cw);
+  chassis.pid_turn_set(16.5_deg, 55, ez::cw);
   chassis.pid_wait();
-  chassis.pid_drive_set(17.5_in, 65);
+  chassis.pid_drive_set(10.5_in, 35);
   chassis.pid_wait();
   //! Score High
   set_indexer(false);
-  set_intake(-127);
-  delay(275);
-  set_intake(127);
-  delay(2100);
-  chassis.pid_drive_set(3_in, 100);
+  delay(2200);
+  //! Ram into Goal
+  chassis.pid_drive_set(3_in, 80);
   chassis.pid_wait();
-  delay(100);
-  chassis.pid_drive_set(-10_in, 80);
+  set_intake(0);
+  // todo Reverse
+  chassis.pid_drive_set(-5_in, 35);
   chassis.pid_wait();
-  */
 }
 
 void Right36() {
+  set_intake(127);
+  set_indexer(true);
+  //! Intake Blocks
+  chassis.pid_drive_set(8_in, 60);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(18.7, 37);
+  chassis.pid_wait();
+  chassis.pid_swing_set(ez::LEFT_SWING, 67_deg, 57, 22);
+  chassis.pid_wait();
+  //! Lick Blocks
+  chassis.pid_drive_set(6.3, 30);
+  chassis.pid_wait();
+  // delay(50);
+  set_tongue(true);
+  delay(100);
+  set_intake(127);
+  // todo Go to Mid
+  chassis.pid_swing_set(ez::LEFT_SWING, 42_deg, 58, 20);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-11, 75);
+  chassis.pid_wait_quick_chain();
+  set_tongue(false);
+  chassis.pid_drive_set(-6, 25);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-63_deg, 60, ez::ccw);
+  chassis.pid_wait();
+  chassis.pid_drive_set(4.5, 40);
+  chassis.pid_wait();
+  //! Score Mid
+  // set_indexer(false);
+  set_intake(-83);  //? test
+  delay(1250);
+  set_intake(40);
+  // todo Go to Loader
+  chassis.pid_drive_set(-25_in, 77);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(-21_in, 45);
+  chassis.pid_wait();
+  set_indexer(true);
+  set_intake(20);
+  set_tongue(true);
+  chassis.pid_turn_set(162_deg, 55, ez::ccw);
+  chassis.pid_wait();
+  //! Load
+  set_intake(127);
+  chassis.pid_drive_set(7_in, 35);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(7_in, 65);
+  chassis.pid_wait_quick_chain();
+  delay(600);
+  // todo Go to High
+  chassis.pid_drive_set(-11, 50);
+  chassis.pid_wait_quick_chain();
+  set_tongue(false);
+  chassis.pid_turn_set(-17_deg, 55, ez::ccw);
+  chassis.pid_wait();
+  chassis.pid_drive_set(13, 35);
+  chassis.pid_wait();
+  //! Score High
+  set_indexer(false);
+  delay(2200);
+  // todo Ram into Goal
+  chassis.pid_drive_set(3, 80);
+  chassis.pid_wait();
+  set_intake(0);
 }
 
 void SoloAwpRed() {
@@ -162,6 +196,60 @@ void SoloAwpRed() {
 
 void SoloAwpBlue() {
 }
+
+void Skills() {
+  set_anglechanger(true);
+  set_indexer(true);
+  /* FIRST QUADRANT */
+  //! Intake
+  chassis.pid_drive_set(12_in, 80);
+  chassis.pid_wait_quick_chain();
+  set_intake(127);
+  // todo Go To Loader
+  chassis.pid_drive_set(12_in, 25);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-12_in, 60);
+  chassis.pid_wait();
+  chassis.pid_turn_set(60_deg, 70);
+  chassis.pid_wait();
+  chassis.pid_drive_set(12_in, 80);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(15_in, 50);
+  chassis.pid_wait();
+  set_tongue(true);
+  chassis.pid_turn_set(150_deg, 70, ez::cw);
+  chassis.pid_wait();
+  //! Load
+  chassis.pid_drive_set(10_in, 80);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(10_in, 50);
+  chassis.pid_wait();
+  delay(1250);
+  //! Score High Goal 1
+  chassis.pid_drive_set(-10_in, 70);
+  chassis.pid_wait();
+  set_tongue(false);
+  chassis.pid_turn_set(-27_deg, 45, ez::ccw);
+  chassis.pid_wait();
+  set_intake(0);
+  chassis.pid_drive_set(21_in, 75);
+  chassis.pid_wait();
+  delay(200);
+  chassis.pid_drive_set(-1.5_in, 50);
+  chassis.pid_wait();
+  set_intake(127);
+  set_indexer(false);
+  delay(1700);
+  //! Ram into Goal
+  chassis.pid_drive_set(3.5_in, 70);
+  chassis.pid_wait_quick_chain();
+  // todo Go To Parking Zone
+  chassis.pid_drive_set(-10_in, 70);
+  chassis.pid_wait();
+  chassis.pid_turn_set(10_deg, 70);
+  chassis.pid_wait();
+}
+
 void drive_example() {
   // The first parameter is target inches
   // The second parameter is max speed the robot will drive at

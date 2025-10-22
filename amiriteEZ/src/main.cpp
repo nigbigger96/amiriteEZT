@@ -59,12 +59,11 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
       //! CHANGE
-
       {"Left36\n\nLeft36", Left36},
-      {"Right36\n\nRight36", Right36},
+      // {"Right36\n\nRight36", Right36},
+      {"Skills\n\nSkills", Skills},
       {"SoloAwp\n\nSoloAwp", SoloAwpBlue},
       {"SoloAwp\n\nSoloAwp", SoloAwpRed},
-      // {"Skills\n\nSkills", Skills},
       {"Drive\n\nDrive forward and come back", drive_example},
       {"Turn\n\nTurn 3 times.", turn_example},
       {"Drive and Turn\n\nDrive forward, turn, come back", drive_and_turn},
@@ -146,7 +145,7 @@ void autonomous() {
 /**
  * Simplifies printing tracker values to the brain screen
  */
-void screen_print_tracker(ez::tracking_wheel *tracker, std::string name, int line) {
+void screen_print_tracker(ez::tracking_wheel* tracker, std::string name, int line) {
   std::string tracker_value = "", tracker_width = "";
   // Check if the tracker exists
   if (tracker != nullptr) {
@@ -257,7 +256,7 @@ void opcontrol() {
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
-    unlocked = false;
+    unlocked = true;
     // chassis.opcontrol_tank();  // Tank control
     if (unlocked) {
       chassis.opcontrol_arcade_standard(ez::SPLIT);  // Standard split arcade
@@ -270,53 +269,8 @@ void opcontrol() {
     descore_opcontrol();
     indexer_opcontrol();
     tongue_opcontrol();
-    // trapdoor_opcontrol();
+    trapdoor_opcontrol();
     // . . .
-    /*
-    // --- Case 1: Both pressed (trapdoor) ---
-    if (yB && rightB &&
-        (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y) ||
-         master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT))) {
-      trapdoorToggle = !trapdoorToggle;
-      set_trapdoor(trapdoorToggle);
-    }
-    // --- Case 2: Y pressed (tongue only) ---
-    else if (yB && !rightB && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
-      tongueToggle = !tongueToggle;
-      set_tongue(tongueToggle);
-    }
-
-    // --- Case 3: Right pressed (descore only) ---
-    else if (rightB && !yB && master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
-      descoreToggle = !descoreToggle;
-      set_descore(descoreToggle);
-    }
-    */
-
-    bool yB = master.get_digital(E_CONTROLLER_DIGITAL_Y);
-    bool rightB = master.get_digital(E_CONTROLLER_DIGITAL_RIGHT);
-    bool yNew = master.get_digital_new_press(E_CONTROLLER_DIGITAL_Y);
-    bool rightNew = master.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT);
-
-    // // --- Combo: Both Y + Right ---
-    // if (yB && rightB && (yNew || rightNew)) {
-    //   trapdoorToggle = !trapdoorToggle;
-    //   set_trapdoor(trapdoorToggle);
-    // }
-    // // --- Y only ---
-    // else if (yB && !rightB && yNew) {
-    //   tongueToggle = !tongueToggle;
-    //   set_tongue(tongueToggle);
-    // }
-    // // --- Right only ---
-    // else if (rightB && !yB && rightNew) {
-    //   descoreToggle = !descoreToggle;
-    //   set_descore(descoreToggle);
-    // }
-    // . . .
-
-    if (master.get_digital_new_press(DIGITAL_X))
-      autonomous();
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
