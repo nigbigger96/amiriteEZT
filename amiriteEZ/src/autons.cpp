@@ -205,49 +205,110 @@ void Skills() {
   chassis.pid_drive_set(12_in, 80);
   chassis.pid_wait_quick_chain();
   set_intake(127);
-  // todo Go To Loader
+  // todo Go To Loader 1
   chassis.pid_drive_set(12_in, 25);
   chassis.pid_wait();
   chassis.pid_drive_set(-12_in, 60);
+  set_intake(0);
   chassis.pid_wait();
   chassis.pid_turn_set(60_deg, 70);
   chassis.pid_wait();
   chassis.pid_drive_set(12_in, 80);
   chassis.pid_wait_quick_chain();
+  set_tongue(true);
   chassis.pid_drive_set(15_in, 50);
   chassis.pid_wait();
-  set_tongue(true);
   chassis.pid_turn_set(150_deg, 70, ez::cw);
   chassis.pid_wait();
-  //! Load
-  chassis.pid_drive_set(10_in, 80);
+  //! Load 1
+  set_intake(127);
+  chassis.pid_drive_set(10.5_in, 80);
   chassis.pid_wait_quick_chain();
-  chassis.pid_drive_set(10_in, 50);
+  chassis.pid_drive_set(10.5_in, 65);
   chassis.pid_wait();
-  delay(1250);
-  //! Score High Goal 1
+  delay(2250);
+  // todo Go To High Goal 1A
   chassis.pid_drive_set(-10_in, 70);
   chassis.pid_wait();
   set_tongue(false);
-  chassis.pid_turn_set(-27_deg, 45, ez::ccw);
+  chassis.pid_turn_set(-27_deg, 45, ez::ccw);  //? 30
   chassis.pid_wait();
   set_intake(0);
-  chassis.pid_drive_set(21_in, 75);
+  chassis.pid_drive_set(21_in, 67);
   chassis.pid_wait();
   delay(200);
+  //! Score High Goal 1A
   chassis.pid_drive_set(-1.5_in, 50);
   chassis.pid_wait();
   set_intake(127);
   set_indexer(false);
-  delay(1700);
-  //! Ram into Goal
+  delay(1000);
+  set_intake(-127);
+  delay(150);
+  set_intake(127);
+  delay(1500);
+  //! Ram Into High Goal 1A
   chassis.pid_drive_set(3.5_in, 70);
   chassis.pid_wait_quick_chain();
-  // todo Go To Parking Zone
+  set_intake(0);
+  // todo Go To 2nd Quadrant
   chassis.pid_drive_set(-10_in, 70);
   chassis.pid_wait();
-  chassis.pid_turn_set(10_deg, 70);
+  chassis.pid_turn_set(-120_deg, 70);
   chassis.pid_wait();
+  chassis.pid_drive_set(25_in, 70);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-30_deg, 70);
+  chassis.pid_wait();
+  /* SECOND QUADRANT */
+  //! Intake Blocks
+  set_intake(127);
+  set_indexer(true);
+  chassis.pid_drive_set(12_in, 30);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(32_in, 70);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(16_in, 20);
+  chassis.pid_wait_quick_chain();
+  // todo Go To Long Goal 1B
+  chassis.pid_swing_set(ez::LEFT_SWING, 60_deg, 60, 16);
+  set_intake(0);
+  chassis.pid_wait();
+  chassis.pid_drive_set(17_in, 50);
+  chassis.pid_wait();
+  chassis.pid_turn_set(150_deg, 70);
+  chassis.pid_wait();
+  chassis.pid_drive_set(17_in, 67);
+  chassis.pid_wait();
+  delay(150);
+  //! Score High Goal 1B
+  chassis.pid_drive_set(-1.5_in, 50);
+  set_intake(127);
+  chassis.pid_wait();
+  set_indexer(false);
+  delay(1000);
+  set_intake(-127);
+  delay(100);
+  set_intake(127);
+  delay(1100);
+  //! Ram Into High Goal 1B
+  chassis.pid_drive_set(3.5_in, 70);
+  chassis.pid_wait();
+  set_intake(0);
+  delay(100);
+  // todo Go To Loader 2
+  chassis.pid_drive_set(-12_in, 50);
+  chassis.pid_wait();
+  set_tongue(true);
+  chassis.pid_turn_set(-27_deg, 50);
+  chassis.pid_wait();
+  //! Load 2
+  set_intake(127);
+  chassis.pid_drive_set(10_in, 80);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(10.5_in, 60);
+  chassis.pid_wait();
+  delay(2250);
 }
 
 void drive_example() {

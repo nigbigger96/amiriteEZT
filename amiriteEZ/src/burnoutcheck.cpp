@@ -22,21 +22,21 @@ void monitorMotorTemps() {
         break;
       }
     }
-    if (!competition::is_connected()) {
-      if (overheated && !alertSent) {
-        for (int i = 0; i < 3; i++) {
-          master.rumble("--");
-          delay(670);
-          master.rumble(".");
-          delay(150);
-        }
-        alertSent = true;
-        unlocked = false;
-      } else if (!overheated && alertSent) {
-        alertSent = false;
-        unlocked = true;
+    // if (!competition::is_connected()) {
+    if (overheated && !alertSent) {
+      for (int i = 0; i < 3; i++) {
+        master.rumble("--");
+        delay(670);
+        master.rumble(".");
+        delay(150);
       }
+      alertSent = true;
+      unlocked = false;
+    } else if (!overheated && alertSent) {
+      alertSent = false;
+      unlocked = true;
     }
+    // }
 
     delay(500);
   }

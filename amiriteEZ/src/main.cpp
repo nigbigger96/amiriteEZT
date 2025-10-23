@@ -34,6 +34,8 @@ void initialize() {
   ez::ez_template_print();
   set_anglechanger(true);
   pros::delay(500);  // Stop the user from doing anything while legacy ports configure
+  unlocked = true;
+  pros::Task motorTempTask(monitorMotorTemps);
 
   // Look at your horizontal tracking wheel and decide if it's in front of the midline of your robot or behind it
   //  - change `back` to `front` if the tracking wheel is in front of the midline
@@ -59,7 +61,7 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
       //! CHANGE
-      {"Left36\n\nLeft36", Left36},
+      // {"Left36\n\nLeft36", Left36},
       // {"Right36\n\nRight36", Right36},
       {"Skills\n\nSkills", Skills},
       {"SoloAwp\n\nSoloAwp", SoloAwpBlue},
@@ -256,7 +258,7 @@ void opcontrol() {
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
-    unlocked = true;
+
     // chassis.opcontrol_tank();  // Tank control
     if (unlocked) {
       chassis.opcontrol_arcade_standard(ez::SPLIT);  // Standard split arcade
